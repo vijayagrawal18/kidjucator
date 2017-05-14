@@ -1,14 +1,11 @@
 <table class="four-square">
   <tr>
-    <td  class="first">1</td>
-    <td  class="second">2</td>
+    <td  class="first <%= @carriers.first.css %>"><%= @carriers.first.display %></td>
+    <td  class="second <%= @carriers.second.css %>"><%= @carriers.second.display %></td>
   </tr>
   <tr>
-    <td  class="third">3</td>
-    <td  class="fourth">4</td>
+    <td  class="third <%= @carriers.third.css %>"><%= @carriers.third.display %></td>
+    <td  class="fourth <%= @carriers.fourth.css %>"><%= @carriers.fourth.display %></td>
   </tr>
-  <audio id="1" src="http://www.macmillandictionary.com/us/media/american/us_pron/o/one/one_A/one_American_English_pronunciation.mp3"></audio>
-  <audio id="2" src="http://www.macmillandictionary.com/us/media/american/us_pron/t/two/two_A/two_American_English_pronunciation.mp3"></audio>
-  <audio id="3" src="http://www.macmillandictionary.com/us/media/american/us_pron/t/thr/three/three_American_English_pronunciation.mp3"></audio>
-  <audio id="4" src="http://www.macmillandictionary.com/us/media/american/us_pron/f/fou/four_/four_American_English_pronunciation_21079.mp3"></audio>
+  <audio id="player" src=""></audio>
 </table>

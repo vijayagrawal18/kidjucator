@@ -9,6 +9,33 @@ html, body, table {
   -webkit-transition: all 2s ease;
 }
 
+img {
+  max-height: 100% !important;
+  max-width: 100% !important;
+}
+
+.lemonchiffon{
+  background-color: lemonchiffon;
+}
+.green{
+  background-color: green;
+}
+.cadetblue{
+  background-color: cadetblue;
+}
+.lightcoral{
+  background-color: lightcoral;
+}
+.orange{
+  background-color: orange;
+}
+.gray{
+  background-color: gray;
+}
+.sienna{
+  background-color: sienna;
+}
+
 .four-square {
   font-size: 180px;
 
@@ -19,20 +46,8 @@ html, body, table {
   }
 
   tr {
-    td {
+    td.text {
       padding-left: 25%;
-    }
-    .first{
-      background-color: lemonchiffon;
-    }
-    .second{
-      background-color: green;
-    }
-    .third{
-      background-color: cadetblue;
-    }
-    .fourth{
-      background-color: lightcoral;
     }
 
     &.center{
@@ -42,10 +57,17 @@ html, body, table {
       }
     }
 
-    td.center{
+    td.center.text{
       display: table-cell;
       padding-left: 50%;
       font-size: 330px;
+    }
+    td.center.image{
+      display: table-cell;
+      img {
+        max-height: 150% !important;
+        max-width: 150% !important;
+      }
     }
   }
 
