@@ -1,0 +1,2 @@
+class SeeAndSay < ApplicationRecord
+end
