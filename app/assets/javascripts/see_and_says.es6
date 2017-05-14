@@ -10,6 +10,8 @@ var SeeAndSays = (module) => {
     const element = $(event.target);
     [element, element.parent(), $("table")].forEach((ele) => ele.addClass("center"))
     element.prop('onclick',null).off('click');
+    const audio = document.getElementById(element.text())
+    setTimeout(() => audio.play(), 1000)
     setTimeout(() => reset(element), 5000)
   }
 
