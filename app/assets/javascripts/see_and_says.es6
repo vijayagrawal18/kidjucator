@@ -40,9 +40,20 @@ var SeeAndSays = (module) => {
     reset(cell)
   }
 
+  module.scheduleNext = (currentIndex, timeOut = 10000) => {
+    var nextIndex;
+    while((nextIndex = (Math.floor(Math.random() * 4))) == currentIndex);
+
+    setTimeout(() => {
+      $($("td")[nextIndex]).trigger("click")
+      module.scheduleNext(nextIndex)
+    }, timeOut)
+  }
+
   return module;
 }({})
 
 $(() => {
   $("td").on("click", SeeAndSays.highlight)
+  SeeAndSays.scheduleNext(-1, 1000)
 })
