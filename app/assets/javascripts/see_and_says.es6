@@ -1,7 +1,6 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-var SeeAndSays = (module) => {
-
+const SeeAndSays = (module) => {
   const reset = (cell) => {
     setTimeout(() => {
       $(".center").removeClass("center")
@@ -29,8 +28,8 @@ var SeeAndSays = (module) => {
     setTimeout(() => audio[0].play(), 1500)
   }
 
-  module.highlight = (event) => {
-    const {cell, displayTag} = findElements($(event.target));
+  module.animate = (target) => {
+    const {cell, displayTag} = findElements($(target));
 
     [cell, cell.parent(), $("table")].forEach((ele) => ele.addClass("center"))
     cell.prop('onclick',null).off('click');
@@ -40,14 +39,46 @@ var SeeAndSays = (module) => {
     reset(cell)
   }
 
-  module.scheduleNext = (currentIndex, timeOut = 10000) => {
-    var nextIndex;
+  module.highlight = (event) => {
+    module.animate(event.target);
+  }
+
+  return module;
+}({})
+
+const SlideShow = (module) => {
+  let turnedOff = true;
+
+  const turnOn = () => {
+    $("#slideShow").text("Turn Off SlideShow")
+    turnedOff = false;
+    scheduleNext(-1, 100)
+    $("td").prop('onclick',null).off('click');
+  }
+
+  const turnOff = () => {
+    $("#slideShow").text("Turn On SlideShow")
+    turnedOff = true;
+    $("td").on("click", SeeAndSays.highlight)
+  }
+
+  const scheduleNext = (currentIndex, timeOut = 10000) => {
+    if(turnedOff)
+      return;
+
+    let nextIndex;
     while((nextIndex = (Math.floor(Math.random() * 4))) == currentIndex);
 
     setTimeout(() => {
-      $($("td")[nextIndex]).trigger("click")
-      module.scheduleNext(nextIndex)
+      SeeAndSays.animate($("td")[nextIndex])
+      scheduleNext(nextIndex)
     }, timeOut)
+  }
+
+  module.toggle = () => {
+    turnedOff ? turnOn() : turnOff()
+
+    return false;
   }
 
   return module;
@@ -55,5 +86,5 @@ var SeeAndSays = (module) => {
 
 $(() => {
   $("td").on("click", SeeAndSays.highlight)
-  SeeAndSays.scheduleNext(-1, 1000)
+  $("#slideShow").on("click", SlideShow.toggle)
 })
