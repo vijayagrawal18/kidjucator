@@ -7,7 +7,6 @@ var SeeAndSays = (module) => {
     $(element).click(module.highlight)
   }
   module.highlight = (event) => {
-    debugger;
     const element = $(event.target);
     [element, element.parent(), $("table")].forEach((ele) => ele.addClass("center"))
     element.prop('onclick',null).off('click');
