@@ -1,5 +1,6 @@
 class AddFamily < ActiveRecord::Migration[5.1]
   def change
+    SeeAndSay.connection.schema_cache.clear!
     SeeAndSay.create!(display_text: 1, category: 0, audio_file: "audio/one.mp3")
     SeeAndSay.create!(display_text: 2, category: 0, audio_file: "audio/two.mp3")
     SeeAndSay.create!(display_text: 3, category: 0, audio_file: "audio/three.mp3")
